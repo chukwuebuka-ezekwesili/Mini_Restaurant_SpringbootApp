@@ -1,0 +1,19 @@
+.content{
+    margin: 60px 70px 1px 70px;
+    min-height: 65vh;
+}
+
+.card{
+    width:350px;
+    text-align: center;
+    margin: 100px auto;
+}
+
+#title{
+    color: cornflowerblue;
+    font-size: 35px;
+}
+
+.form-group{
+    margin-bottom: 15px;
+}
