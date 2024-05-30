@@ -1,14 +1,12 @@
-package com.humber.LabOneAndTwo.controllers;
+package com.humber.Week4JDBCApp.controllers;
 
-import com.humber.LabOneAndTwo.models.Dish;
-import com.humber.LabOneAndTwo.services.DishService;
+import com.humber.Week4JDBCApp.models.Dish;
+import com.humber.Week4JDBCApp.services.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 
@@ -43,9 +41,10 @@ public class DishController {
 //    }
     //method to get all dishes
     @GetMapping("/dishes")
-    public String getAllDishes(Model model){
+    public String getAllDishes(Model model, @RequestParam(required = false) String message){
         //Injects dishes into the html > whatever is in model is available to the view
         model.addAttribute("dishes", dishService.getDishes());
+        model.addAttribute("message", "Dish added successfully");
         return "menu";
     }
 
@@ -60,9 +59,7 @@ public class DishController {
     // Handles POST requests to "/add-dish" endpoint, This method processes the form submission for adding a new dish
     //this is trying to save the dish inputs
     @PostMapping("/add-dish")
-    public String saveDish(@ModelAttribute Dish dish, Model model) {
-        //saving in the db
-        //this is how to save - dishService.saveDish(dish)
+    public String addDish(@ModelAttribute Dish dish, Model model) {
 
         // this is the business error message to check the price, this checks that the price of dish should not be greater than 10
         // And if it is, it should display an error message
@@ -71,9 +68,18 @@ public class DishController {
             return "add-dish";
         }
 
+        //saving in the db
+        //this is how to save - dishService.saveDish(dish)
+        dishService.saveDish(dish);
+
         //adds the dish to the model to display it on hte menu page, and then returns the view name "menu" to be rendered
-        model.addAttribute("dishes", dish);
-        return "menu";
+        //modified to return everything added and the database values also
+//        model.addAttribute("dishes", dishService.getDishes());
+//        model.addAttribute("message", "Dish added successfully");
+//        return "menu";
+
+        // in order to avoid repeating our codes, the DRY METHOD
+        return "redirect:/restaurant/dishes?message=Dish added successfully";
     }
 
 }

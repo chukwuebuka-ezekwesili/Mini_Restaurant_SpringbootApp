@@ -1,4 +1,4 @@
-package com.humber.LabOneAndTwo.models;
+package com.humber.Week4JDBCApp.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
