@@ -61,25 +61,42 @@ public class DishController {
     @PostMapping("/add-dish")
     public String addDish(@ModelAttribute Dish dish, Model model) {
 
-        // this is the business error message to check the price, this checks that the price of dish should not be greater than 10
-        // And if it is, it should display an error message
-        if(dish.getPrice()>10){
-            model.addAttribute("error", "Price should be less than 10");
+        // Try to save the dish using the DishService. This may throw an IllegalArgumentException
+        // if the business rule (price less than 20) is violated.
+        try {
+            dishService.saveDish(dish);
+        } catch (IllegalArgumentException e) {
+            // Catch the IllegalArgumentException thrown by DishService if the dish price is greater than 10.
+            // Add the error message to the model to be displayed on the "add-dish" page.
+            // Return the "add-dish" view to allow the user to correct the input.
+            model.addAttribute("error", e.getMessage());
             return "add-dish";
         }
-
-        //saving in the db
-        //this is how to save - dishService.saveDish(dish)
-        dishService.saveDish(dish);
-
-        //adds the dish to the model to display it on hte menu page, and then returns the view name "menu" to be rendered
-        //modified to return everything added and the database values also
-//        model.addAttribute("dishes", dishService.getDishes());
-//        model.addAttribute("message", "Dish added successfully");
-//        return "menu";
-
-        // in order to avoid repeating our codes, the DRY METHOD
+        // If the dish is saved successfully, redirect to the "/restaurant/dishes" endpoint
+        // with a success message.
         return "redirect:/restaurant/dishes?message=Dish added successfully";
     }
 
-}
+//        //saving in the db
+//        //this is how to save - dishService.saveDish(dish)
+//        dishService.saveDish(dish);
+//
+//        // this is the business error message to check the price, this checks that the price of dish should not be greater than 10
+//        // And if it is, it should display an error message
+//        if(dish.getPrice()>10){
+//            model.addAttribute("error", "Price should be less than 10");
+//            return "add-dish";
+//        }
+//
+//
+//        //adds the dish to the model to display it on hte menu page, and then returns the view name "menu" to be rendered
+//        //modified to return everything added and the database values also
+////        model.addAttribute("dishes", dishService.getDishes());
+////        model.addAttribute("message", "Dish added successfully");
+////        return "menu";
+//
+//        // in order to avoid repeating our codes, the DRY METHOD
+//        return "redirect:/restaurant/dishes?message=Dish added successfully";
+    }
+
+
