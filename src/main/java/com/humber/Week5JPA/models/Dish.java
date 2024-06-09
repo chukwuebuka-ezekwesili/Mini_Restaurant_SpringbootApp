@@ -1,9 +1,14 @@
-package com.humber.Week4JDBCApp.models;
+package com.humber.Week5JPA.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @Data
 //This creates getters and setters - Or alternative @Getter and @Setter
@@ -12,9 +17,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
 
 public class Dish {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     //Fields
     private int id;
     private String name;

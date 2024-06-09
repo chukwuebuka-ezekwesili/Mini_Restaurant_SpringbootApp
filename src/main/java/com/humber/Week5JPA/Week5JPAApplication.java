@@ -1,13 +1,13 @@
-package com.humber.Week4JDBCApp;
+package com.humber.Week5JPA;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Week4JDBCAppApplication {
+public class Week5JPAApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Week4JDBCAppApplication.class, args);
+		SpringApplication.run(Week5JPAApplication.class, args);
 	}
 
 }

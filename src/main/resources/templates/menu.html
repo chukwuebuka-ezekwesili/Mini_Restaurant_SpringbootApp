@@ -14,6 +14,13 @@
         <!--        display error if dish price being inserted is lesser than 10-->
         <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
         <h1 id="title">Menu</h1>
+<!--        form section-->
+        <form th:action="@{/restaurant/menu}" method="get">
+            <input type="text" name="searchedCategory" placeholder="Category" />
+            <input type="number" name="searchedPrice" placeholder="Price" />
+            <button type="submit" class="btn btn-primary">Filter</button>
+            <a class="btn btn-primary" th:href="@{/restaurant/menu}">Reset</a>
+        </form>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -22,6 +29,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Category</th>
                 <th scope="col">Price</th>
+                <th scope="col" colspan="2">OPERATIONS</th>
             </tr>
             </thead>
             <tbody>
@@ -32,6 +40,13 @@
                 <td th:text="${dish.name}"></td>
                 <td th:text="${dish.category}"></td>
                 <td th:text="${dish.price}"></td>
+                <td><a
+                        th:href="@{/restaurant/delete/{id}(id=${dish.id})}"
+                        class="btn btn-danger btn-sm">Delete</a></td>
+                <td><a
+                        th:href="@{/restaurant/update/{id}(id=${dish.id})}"
+                        class="btn btn-danger btn-sm">Update</a></td>
+
             </tr>
 
             </tbody>

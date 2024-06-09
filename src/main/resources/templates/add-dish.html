@@ -16,9 +16,11 @@
         <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
 
         <!-- Form for adding a new dish, using POST method and bound to the 'dish' object in the model -->
-        <form method="POST" th:action="@{add-dish}" th:object="${dish}">
+        <form method="POST" th:action="${dish.name} == null? @{/restaurant/add-dish} : @{/restaurant/update-dish}" th:object="${dish}">
+            <h1 th:text="${dish.name == null?'Add-Dish' : 'Update Dish'}"></h1>
             <!--            thymeleaf form binding it can also be parsed like this = th:field="@{dish.id}"-->
 
+            <input type="hidden" th:field="*{id}">
             <div class="form-group">
                 <label for="exampleFormControlInput1">ID:</label>
                 <input type="text" th:field="*{id}" class="form-control" placeholder="Enter Dish ID" id="exampleFormControlInput1">
@@ -41,7 +43,7 @@
             </div>
 
             <!-- Submit button to add the dish -->
-            <button type="submit" class="btn btn-primary">ADD</button>
+            <button type="submit" class="btn btn-primary" th:text="${dish.name == null?'Add' : 'Update'}">Update</button>
 
         </form>
 
