@@ -16,7 +16,7 @@
         <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
 
         <!-- Form for adding a new dish, using POST method and bound to the 'dish' object in the model -->
-        <form method="POST" th:action="${dish.name} == null? @{/restaurant/add-dish} : @{/restaurant/update-dish}" th:object="${dish}">
+        <form method="POST" th:action="${dish.name} == null? @{/restaurant/admin/add-dish} : @{/restaurant/admin/update-dish}" th:object="${dish}">
             <h1 th:text="${dish.name == null?'Add-Dish' : 'Update Dish'}"></h1>
             <!--            thymeleaf form binding it can also be parsed like this = th:field="@{dish.id}"-->
 

@@ -1,10 +1,10 @@
-package com.humber.Week5JPA;
+package com.humber.Week8Security;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Week5JPAApplicationTests {
+class Week8SecurityApplicationTests {
 
 	@Test
 	void contextLoads() {

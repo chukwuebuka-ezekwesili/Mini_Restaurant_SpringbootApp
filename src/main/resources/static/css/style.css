@@ -17,3 +17,30 @@
 .form-group{
     margin-bottom: 15px;
 }
+
+.pagination{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    bottom :40px;
+    width: 100%;
+}
+
+.pagination-info, .pagination-no{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.pagination-info div{
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid lightgrey;
+}
+
+.pagination-no div{
+    margin: 5px;
+    padding: 10px;
+}
